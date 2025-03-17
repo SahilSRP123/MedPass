@@ -1,0 +1,118 @@
+/* Medical-Themed Color Palette */
+body {
+    font-family: Arial, sans-serif;
+    background: #f3f8fc; /* Light blue background */
+    color: #2c3e50; /* Dark blue-gray text */
+    margin: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Center content horizontally */
+    justify-content: center; /* Center content vertically */
+    min-height: 100vh; /* Full viewport height */
+}
+
+/* Headings */
+h2, h3 {
+    color: #1d6fa5; /* Deep blue for headings */
+    text-align: center;
+}
+
+/* Form Styling */
+form {
+    margin-bottom: 20px;
+    padding: 20px;
+    border: 1px solid #2c3e50;
+    border-radius: 12px;
+    background: #ffffff; /* White background for form */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+    width: 100%;
+    max-width: 500px; /* Responsive max width */
+    text-align: center; /* Center form elements */
+}
+
+/* Input and Button Styling */
+input, button {
+    margin-top: 12px;
+    padding: 10px;
+    width: 100%;
+    box-sizing: border-box; /* Ensure padding doesn't affect width */
+    border-radius: 8px; /* Rounded corners */
+}
+
+input {
+    border: 1px solid #2c3e50;
+}
+
+/* Primary Button Style */
+button {
+    background-color: #1d6fa5; /* Blue button */
+    color: white;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #155a8a; /* Darker blue on hover */
+}
+
+/* QR Scanner Button */
+#scanQR {
+    background-color: #4CAF50; /* Green for QR */
+}
+
+#scanQR:hover {
+    background-color: #45a049; /* Darker green on hover */
+}
+
+/* QR Code Scanner Section */
+#qr-reader {
+    width: 100%;
+    max-width: 400px;
+    margin-top: 20px;
+    border: 2px solid #1d6fa5; /* Blue border */
+    border-radius: 12px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Report List */
+ul {
+    list-style: none;
+    padding: 0;
+}
+
+li {
+    margin: 8px 0;
+}
+
+/* Report Links */
+a {
+    text-decoration: none;
+    color: #3498db; /* Link blue */
+}
+
+a:hover {
+    color: #1d6fa5; /* Darker blue on hover */
+}
+
+/* Logout Link */
+a[href="/"] {
+    display: block;
+    margin-top: 20px;
+    text-align: center;
+}
+
+/* Responsive Design for Small Screens */
+@media (max-width: 600px) {
+    form {
+        padding: 15px;
+    }
+
+    h2, h3 {
+        font-size: 1.5rem;
+    }
+
+    #qr-reader {
+        max-width: 300px; /* Smaller scanner for small screens */
+    }
+}

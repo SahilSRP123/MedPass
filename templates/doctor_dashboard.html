@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Doctor Dashboard - MedPass</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <script src="https://unpkg.com/html5-qrcode"></script>
+</head>
+
+<body>
+    <h2>Welcome to Doctor Dashboard</h2>
+
+    <!-- Patient Search Form -->
+    <h3>Search Patient Reports:</h3>
+    <form method="POST" action="/doctor_dashboard" id="searchForm">
+        <label>Enter Patient ID:</label>
+        <input type="text" name="patient_id" id="patient_id" required>
+        <button type="submit">Search</button>
+        <button type="button" id="scanQR">Scan QR</button>
+    </form>
+
+    <!-- QR Code Scanner Section -->
+    <div id="qr-reader" style="width: 300px; display: none;"></div>
+
+    {% if reports %}
+        <h3>Reports for Patient ID: {{ request.form.patient_id }}</h3>
+        <ul>
+            {% for report in reports %}
+                <li>
+                    {{ report.report_name }} -
+                    <a href="{{ url_for('uploaded_file', filename=report.file_path.replace('\\', '/').split('/')[-1]) }}">View Report</a>
+                </li>
+            {% endfor %}
+        </ul>
+    {% elif request.method == 'POST' %}
+        <p>No reports found for this patient ID.</p>
+    {% endif %}
+
+    <a href="/">Logout</a>
+
+    <script>
+            document.getElementById('scanQR').addEventListener('click', function () {
+            const qrReader = document.getElementById('qr-reader');
+            qrReader.style.display = qrReader.style.display === 'none' ? 'block' : 'none';
+
+            if (qrReader.style.display === 'block') {
+                const html5QrCode = new Html5Qrcode("qr-reader");
+
+                // Get available cameras (back camera preference for mobile)
+                Html5Qrcode.getCameras().then(devices => {
+                    if (devices && devices.length) {
+                        let backCamera = devices.find(device => device.label.toLowerCase().includes('back'));
+                        let cameraId = backCamera ? backCamera.id : devices[0].id;
+
+                        // Start QR code scanning
+                        html5QrCode.start(
+                            cameraId,
+                            { fps: 10, qrbox: 250 },
+                            (decodedText) => {
+                                document.getElementById('patient_id').value = decodedText;
+                                html5QrCode.stop();
+                                qrReader.style.display = 'none';
+                                document.getElementById('searchForm').submit();
+                            },
+                            (error) => console.warn("Scanning error:", error)
+                        ).catch(err => console.error("Start failed:", err));
+                    }
+                }).catch(err => console.error("Camera error:", err));
+            } else {
+                html5QrCode.stop().catch(err => console.error("Stop failed:", err));
+            }
+        });
+
+    </script>
+</body>
+
+</html>

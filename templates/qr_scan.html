@@ -1,0 +1,10 @@
+<h2>Scan QR Code</h2>
+<input type="text" id="patient_id" placeholder="Enter Patient ID">
+<button onclick="searchPatient()">Search</button>
+
+<script>
+function searchPatient() {
+    const patientId = document.getElementById('patient_id').value;
+    window.location.href = `/reports/${patientId}`;
+}
+</script>

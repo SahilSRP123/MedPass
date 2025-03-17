@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Patient Dashboard - MedPass</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+
+<body>
+    <h2>Welcome to Your Dashboard, Patient</h2>
+
+    <h3>Your QR Code:</h3>
+    <img src="{{ qr_path }}" alt="Patient QR Code" style="width: 200px; height: 200px;">
+
+    <h3>Your Reports:</h3>
+    {% if reports %}
+        <ul>
+            {% for report in reports %}
+                <li>
+                    {{ report.report_name }} -
+                   <a href="{{ url_for('uploaded_file', filename=report.file_path.replace('\\', '/').split('/')[-1]) }}">View Report</a>
+
+                </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>No reports available.</p>
+    {% endif %}
+
+    <a href="/">Logout</a>
+</body>
+
+</html>

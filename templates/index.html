@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>MedPass</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+
+<body>
+    <h2>MedPass</h2>
+    <form action="/login" method="POST">
+        <label>Email:</label> <input type="email" name="email" required><br>
+        <label>Password:</label> <input type="password" name="password" required><br>
+        <button type="submit">Login</button>
+    </form>
+    <p>Don't have an account? <a href="/register">Register here</a></p>
+</body>
+</html>

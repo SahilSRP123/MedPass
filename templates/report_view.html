@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Report View - MedPass</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+
+<body>
+    <h2>View Report</h2>
+    <p>Report Name: {{ report.report_name }}</p>
+
+    <a href="{{ report.file_path }}" target="_blank">Download Report</a>
+    <br><br>
+    <a href="/">Back to Dashboard</a>
+</body>
+
+</html>
+
