@@ -1,5 +1,6 @@
-flask
+Flask
+Flask_SQLAlchemy
+qrcode
+waitress
 ddtrace
-gunicorn
-Flask-SQLAlchemy
-qrcode[pil]
+
