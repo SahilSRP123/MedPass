@@ -144,6 +144,13 @@ def technician_dashboard():
 #     return send_from_directory(UPLOAD_FOLDER, filename)
 
 # Ensure correct path joining
+@app.route("/health")
+def health():
+    return {"status": "ok"}
+
+@app.route("/dummy")
+def dummy():
+    return {"message": "stubbed response"}
 UPLOAD_FOLDER = os.path.join(app.root_path, 'uploads')
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 
